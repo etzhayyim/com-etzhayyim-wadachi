@@ -1,0 +1,9 @@
+{:repository/id "com-etzhayyim-wadachi"
+ :repository/layout :flat-west-project
+ :canonical-formats #{:edn}
+ :source-roots ["src"]
+ :test-roots ["test"]
+ :data-roots ["data"]
+ :schema-roots ["schema" "contracts"]
+ :wire-roots ["wire"]
+ :deprecated-artifacts #{:go :tinygo :shell :tracked-wasm :jsonld-metadata}}

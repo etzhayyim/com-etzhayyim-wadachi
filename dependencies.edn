@@ -1,0 +1,3 @@
+{:dependencies []
+ :runtime :babashka
+ :external-services [{:service :kotoba :mode :operator-gated}]}

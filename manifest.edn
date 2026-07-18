@@ -4,6 +4,7 @@
 {:actor/id        "wadachi"
  :actor/glyph     "轍"
  :actor/tier      :tier-b
+ :actor/integrates ["kuni-umi"]
  :actor/domain    "wadachi.etzhayyim.com"
  :actor/purpose   "Autonomous-mobility R&D (SAE L4 ceiling) — ground autonomous vehicle orchestration for on-site + inter-site ground transport."
  :actor/status    :r0
@@ -32,22 +33,16 @@
   ]
 
  :actor/cells
- [{:cell/id "route_planning"    :cell/kind :langgraph :cell/runtime :wasm}
-  {:cell/id "motion_control"     :cell/kind :langgraph :cell/runtime :wasm}
-  {:cell/id "obstacle_avoidance" :cell/kind :langgraph :cell/runtime :wasm}
-  {:cell/id "safety_monitoring"  :cell/kind :langgraph :cell/runtime :wasm}
-  {:cell/id "telemetry_log"      :cell/kind :langgraph :cell/runtime :wasm}]
+ [{:cell/id "route_planning" :cell/source "src/wadachi/cells/route_planning/state_machine.cljc" :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "motion_control" :cell/source "src/wadachi/cells/motion_control/state_machine.cljc" :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "obstacle_avoidance" :cell/source "src/wadachi/cells/obstacle_avoidance/state_machine.cljc" :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "safety_monitoring" :cell/source "src/wadachi/cells/safety_monitoring/state_machine.cljc" :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "telemetry_log" :cell/source "src/wadachi/cells/telemetry_log/state_machine.cljc" :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "social_post" :cell/source "src/wadachi/cells/social_post/state_machine.cljc" :cell/kind :state-machine :cell/runtime :cljc}]
 
  :actor/lex
  [{:lex/id "deliveryRoute"}
   {:lex/id "trajectoryPlan"}
   {:lex/id "missionCompleteRecord"}
   {:lex/id "safetyAlert"}
-  {:lex/id "energyReport"}]
-
- ;; legacy (gen-1) artifacts pending decommission
- :actor/legacy
- {:manifest "actor-manifest.jsonld"
-  :cells-python ["cells/route_planning" "cells/motion_control" "cells/obstacle_avoidance"
-                 "cells/safety_monitoring" "cells/telemetry_log"]
-  :note "Gen-1 Python cells retained for reference; Gen-3 WASM migration (ADR-2605242000 Phase 4)"}}
+  {:lex/id "energyReport"}]}

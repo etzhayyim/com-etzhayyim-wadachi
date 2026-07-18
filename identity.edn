@@ -1,0 +1,5 @@
+{:identity/id "wadachi"
+ :identity/glyph "轍"
+ :identity/did "did:web:etzhayyim.com:wadachi"
+ :identity/wire-document "wire/identity/did.json"
+ :identity/wire-profile "wire/identity/profile.json"}
